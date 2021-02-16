@@ -2,6 +2,7 @@
 # kjv: Read the Word of God from your terminal
 # License: Public domain
 
+gunzip kjv.tsv.gz
 SELF="$0"
 
 get_data() {
@@ -89,6 +90,7 @@ if [ $# -eq 0 ]; then
 		fi
 		get_data kjv.tsv | awk -v cmd=ref -v ref="$ref" "$(get_data kjv.awk)" | ${PAGER}
 	done
+    gzip kjv.tsv
 	exit 0
 fi
 
