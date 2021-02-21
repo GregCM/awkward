@@ -1,4 +1,4 @@
-kjv:
+# awkward
 
 Read the Word of God from your terminal
 
@@ -41,6 +41,8 @@ kjv can be built by cloning the repository and then running make:
 
 ## License
 
-Adapted from https://github.com/bontibon/kjv.git
 (2021) Gregory Caceres-Munsell <gregcaceres@gmail.com>
+
 Public domain
+
+Adapted from https://github.com/bontibon/kjv.git
