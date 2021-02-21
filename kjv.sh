@@ -5,9 +5,9 @@
 gunzip kjv.tsv.gz
 SELF="$0"
 
-get_data() {
-	sed '1,/^#EOF$/d' < "$SELF" | tar xzf - -O "$1"
-}
+#get_data() {
+	#sed '1,/^#EOF$/d' < "$SELF" | tar -xzf - -O "$1"
+#}
 
 if [ -z "$PAGER" ]; then
 	if command -v less >/dev/null; then
@@ -60,7 +60,8 @@ while [ $# -gt 0 ]; do
 		break
 	elif [ "$1" = "-l" ]; then
 		# List all book names with their abbreviations
-		get_data kjv.tsv | awk -v cmd=list "$(get_data kjv.awk)"
+		#get_data kjv.tsv | awk -v cmd=list "$(get_data kjv.awk)"
+		awk -v cmd=list -f kjv.awk kjv.tsv
 		exit
 	elif [ "$1" = "-W" ]; then
 		export KJV_NOLINEWRAP=1
@@ -88,10 +89,12 @@ if [ $# -eq 0 ]; then
 		if ! read -r ref; then
 			break
 		fi
-		get_data kjv.tsv | awk -v cmd=ref -v ref="$ref" "$(get_data kjv.awk)" | ${PAGER}
+		#get_data kjv.tsv | awk -v cmd=ref -v ref="$ref" "$(get_data kjv.awk)" | ${PAGER}
+		awk -v cmd=ref -v ref="$ref" -f kjv.awk kjv.tsv | ${PAGER}
 	done
     gzip kjv.tsv
 	exit 0
 fi
 
-get_data kjv.tsv | awk -v cmd=ref -v ref="$*" "$(get_data kjv.awk)" | ${PAGER}
+#get_data kjv.tsv | awk -v cmd=ref -v ref="$*" "$(get_data kjv.awk)" | ${PAGER}
+awk -v cmd=ref -v ref="$*" -f kjv.awk kjv.tsv | ${PAGER}

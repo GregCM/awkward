@@ -18,13 +18,13 @@ BEGIN {
 		mode = parseref(ref, p)
 		p["book"] = cleanbook(p["book"])
 	}
-}
 
-cmd == "list" {
-	if (!($2 in seen_books)) {
-		printf("%s (%s)\n", $1, $2)
-		seen_books[$2] = 1
-	}
+    if (cmd == "list") {
+        if (!($2 in seen_books)) {
+            printf("%s (%s)\n", $1, $2)
+            seen_books[$2] = 1
+        }
+    }
 }
 
 function parseref(ref, arr) {
@@ -41,6 +41,7 @@ function parseref(ref, arr) {
 
 	if (match(ref, "^[1-9]?[a-zA-Z ]+")) {
 		# 1, 2, 3, 3a, 4, 5, 6, 8, 9
+        # !7
 		arr["book"] = substr(ref, 1, RLENGTH)
 		ref = substr(ref, RLENGTH + 1)
 	} else if (match(ref, "^/")) {
@@ -51,8 +52,11 @@ function parseref(ref, arr) {
 		return "unknown"
 	}
 
+    # TODO Change to "^ ?"
+    # optionally, after a book is specified, "^:?"
 	if (match(ref, "^:?[1-9]+[0-9]*")) {
 		# 2, 3, 3a, 4, 5, 6, 9
+        # !1, !7, !8
 		if (sub("^:", "", ref)) {
 			arr["chapter"] = int(substr(ref, 1, RLENGTH - 1))
 			ref = substr(ref, RLENGTH)
