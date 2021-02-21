@@ -4,7 +4,7 @@ Read the Word of God from your terminal
 
 ## Usage
 
-    usage: ./kjv [flags] [reference...]
+    usage: ./awkward [flags] [reference...]
 
       -l      list books
       -W      no line wrap
@@ -33,10 +33,10 @@ Read the Word of God from your terminal
 
 ## Build
 
-kjv can be built by cloning the repository and then running make:
+awkward can be built by cloning the repository and then running make:
 
-    git clone https://github.com/gregcm/kjv.git
-    cd kjv
+    git clone https://github.com/gregcm/awkward.git
+    cd awkward
     make
 
 ## License
