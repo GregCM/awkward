@@ -27,10 +27,10 @@ show_help() {
 	exec >&2
 	echo "usage: $(basename "$0") [flags] [reference...]
 
+    -e    encrypt awkward for redistribution
     -l    list books
     -L    print license
     -h    show help
-    -e    encrypt awkward for redistribution
     -W    no line wrap
 
 	Reference types:
@@ -74,19 +74,19 @@ while [ $# -gt 0 ]; do
 	if [ "$1" = "--" ]; then
 		shift
 		break
-	elif [ "$1" = "-l" ]; then
-		# List all book names with their abbreviations
-        show_list
-        exit
-	elif [ "$1" = "-L" ]; then
-        echo "$(get_data LICENSE)"
-        exit
 	elif [ "$1" = "-e" ]; then
         echo "Encrypting for redistribution..."
         echo "Give recipient's email, full name, or unique-alias (best) of their preference:"
         # Encrypt only the archived files
         sed '1,/^#EOF/d' < "$SELF" | gpg2 -cse || \
         echo "abort"
+        exit
+	elif [ "$1" = "-l" ]; then
+		# List all book names with their abbreviations
+        show_list
+        exit
+	elif [ "$1" = "-L" ]; then
+        echo "$(get_data LICENSE)"
         exit
 	elif [ "$1" = "-W" ]; then
         #FIXME
