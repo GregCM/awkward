@@ -1,14 +1,15 @@
-# awkward
+# whrwthal
 
 Read the Word of God from your terminal
 
 ## Usage
 
-    usage: ./awkward [flags] [reference...]
+    usage: whrwthal [flags] [reference...]
 
-      -l      list books
-      -W      no line wrap
-      -h      show help
+      -l    list books
+      -L    print license
+      -h    show help
+      -W    no line wrap
 
       Reference types:
           <Book>
@@ -33,10 +34,10 @@ Read the Word of God from your terminal
 
 ## Build
 
-awkward can be built by cloning the repository and then running make:
+whrwthal can be built by cloning the repository and then running make:
 
-    git clone https://github.com/gregcm/awkward.git
-    cd awkward
+    git clone https://github.com/gregcm/whrwthal.git
+    cd whrwthal
     make
 
 ## License
