@@ -8,4 +8,5 @@ awkward: awkward.sh awkward.awk awkward.tsv LICENSE
 	chmod +x $@
 	#cp $@ /usr/local/bin/$@
 clean:
-	rm awkward && make
+	rm awkward
+	make
